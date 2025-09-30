@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">ADIP JPEG</div>
+            <button class="menu-toggle" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="primary-nav">
+                <a href="#home">Home</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">About</a>
+                <a href="#about">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <span class="eyebrow">Hey, I'm Adip</span>
+                <h1>
+                    <span class="stack-1">A Photographer</span>
+                    <span class="amp">&</span>
+                    <span class="stack-2">Visual</span>
+                    <span class="stack-3">Storyteller</span>
+                </h1>
+                <p class="lead">Capturing weddings, portraits, products, and events with clean, timeless imagery.</p>
+                <a class="btn-primary" href="#contact">Book a Shoot</a>
+            </div>
+
+            <div class="hero-center">
+                <div class="portrait-wrap">
+                    <img src="img/profile/IMG_3416.JPG" alt="Portrait" />
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <ul class="stats">
+                    <li>
+                        <strong>4+</strong>
+                        <span>Years Experience</span>
+                    </li>
+                    <li>
+                        <strong>280+</strong>
+                        <span>Projects Delivered</span>
+                    </li>
+                    <li>
+                        <strong>99%</strong>
+                        <span>Client Satisfaction</span>
+                    </li>
+                    <li>
+                        <strong>50</strong>
+                        <span>Clients Worldwide</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="service-row" id="services">
+            <div class="service">
+                <h4>Weddings & Engagements</h4>
+                <p>Elegant, candid storytelling of your day—so every moment lives on.</p>
+            </div>
+            <div class="service">
+                <h4>Portraits & Lifestyle</h4>
+                <p>Authentic portraits—personal, family, or brand—shot in studio or on location.</p>
+            </div>
+            <div class="service">
+                <h4>Product & Commercial</h4>
+                <p>Crisp images that highlight detail and quality for catalogs and campaigns.</p>
+            </div>
+            <div class="service">
+                <h4>Events & Documentary</h4>
+                <p>Natural coverage for conferences, concerts, and community stories.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-backdrop" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close">✕</button>
+        <div class="lightbox-content">
+            <img src="" alt="Preview" id="lightbox-img">
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        const button = document.querySelector('.menu-toggle');
+        const nav = document.getElementById('primary-nav');
+        if (!button || !nav) return;
+        button.addEventListener('click', function() {
+            const isOpen = document.body.classList.toggle('nav-open');
+            button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        // Close menu when a link is clicked (mobile UX)
+        nav.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                document.body.classList.remove('nav-open');
+                button.setAttribute('aria-expanded', 'false');
+            }
+        });
+    })();
+    </script>
+    <script>
+    // Lightbox for featured shots
+    (function() {
+        const backdrop = document.getElementById('lightbox');
+        const imgEl = document.getElementById('lightbox-img');
+        const closeBtn = backdrop ? backdrop.querySelector('.lightbox-close') : null;
+        const thumbs = document.querySelectorAll('.logo-img');
+        if (!backdrop || !imgEl || thumbs.length === 0) return;
+        function open(src, alt) {
+            imgEl.src = src; imgEl.alt = alt || 'Preview';
+            backdrop.classList.add('open');
+            backdrop.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+        function close() {
+            backdrop.classList.remove('open');
+            backdrop.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        thumbs.forEach(t => t.addEventListener('click', () => open(t.src, t.alt)));
+        closeBtn && closeBtn.addEventListener('click', close);
+        backdrop.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    })();
+    </script>
+
+    <section class="trusted" aria-label="Featured shots">
+        <div class="trusted-inner">
+            <p class="trusted-title">Featured shots</p>
+            <div class="logo-slider" role="list" aria-label="Client logos carousel">
+                <div class="track">
+                    <img class="logo-img" src="img/portfolio/ADP08209-Enhanced-NR.jpg" alt="Feature 1">
+                    <img class="logo-img" src="img/portfolio/ADP03570.jpg" alt="Feature 2">
+                    <img class="logo-img" src="img/portfolio/ADP01102.jpg" alt="Feature 3">
+                    <img class="logo-img" src="img/portfolio/ADP09185.jpg" alt="Feature 4">
+                    <img class="logo-img" src="img/portfolio/DSC09934.jpg" alt="Feature 5">
+                    <img class="logo-img" src="img/portfolio/ADP09738.jpg" alt="Feature 6">
+                    <img class="logo-img" src="img/portfolio/DPF00966.jpg" alt="Feature 7">
+                    <img class="logo-img" src="img/portfolio/ADP00055.jpg" alt="Feature 8">
+                    <!-- duplicate for seamless loop -->
+                    <img class="logo-img" src="img/portfolio/ADP08209-Enhanced-NR.jpg" alt="Feature 1 dup">
+                    <img class="logo-img" src="img/portfolio/ADP03570.jpg" alt="Feature 2 dup">
+                    <img class="logo-img" src="img/portfolio/ADP01102.jpg" alt="Feature 3 dup">
+                    <img class="logo-img" src="img/portfolio/ADP09185.jpg" alt="Feature 4 dup">
+                    <img class="logo-img" src="img/portfolio/DSC09934.jpg" alt="Feature 5 dup">
+                    <img class="logo-img" src="img/portfolio/ADP09738.jpg" alt="Feature 6 dup">
+                    <img class="logo-img" src="img/portfolio/DPF00966.jpg" alt="Feature 7 dup">
+                    <img class="logo-img" src="img/portfolio/ADP00055.jpg" alt="Feature 8 dup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-grid">
+            <h2>Crafting meaningful photos & memorable experiences</h2>
+            <div>
+                <p>Hey, I'm Adip—an Indonesian photographer focused on creating visually compelling stories that feel natural and intentional.</p>
+                <p>I blend clean composition, true-to-life color, and thoughtful direction to make images that resonate. From couples and families to makers and brands, I work closely with clients to plan, shoot, and deliver galleries that stand the test of time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h3>Photography Portfolio</h3>
+            <div class="portfolio-grid">
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/ADP08209-Enhanced-NR.jpg" alt="Project preview 1">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Weddings</span>
+                            <span class="tag">Wedding</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/ADP03570.jpg" alt="Project preview 2">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Food Photography</span>
+                            <span class="tag">Food</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/ADP09185.jpg" alt="Project preview 3">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Birthday</span>
+                            <span class="tag">Events</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/DSC09934.jpg" alt="Project preview 4">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Portraits</span>
+                            <span class="tag">Travel</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/DPF00966.jpg" alt="Project preview 5">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Balinese Ceremony</span>
+                            <span class="tag">Balinese</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="portfolio-card">
+                    <img src="img/portfolio/ADP00055.jpg" alt="Project preview 6">
+                    <figcaption>
+                        <div class="meta">
+                            <span class="title">Photo Studio</span>
+                            <span class="tag">Studio</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container contact-grid">
+            <div>
+                <h3>Book your session</h3>
+                <p class="lead">Share the occasion, preferred dates, and any inspiration. I’ll reply within 24 hours with packages and availability.</p>
+                <ul class="contact-list">
+                    <li><strong>Email:</strong> <a href="mailto:hello@adipjpeg.com">mahadiputra09@gmail.com</a></li>
+                    <li><strong>Instagram:</strong> <a href="#">@adipjpeg</a></li>
+                    <li><strong>Location:</strong> Bandung, ID</li>
+                </ul>
+            </div>
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-row">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" placeholder="Your name" required>
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-row">
+                    <label for="subject">Session type</label>
+                    <input id="subject" name="subject" type="text" placeholder="Wedding, portrait, product, event">
+                </div>
+                <div class="form-row">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell me about your shoot" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Request Quote</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
